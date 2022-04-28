@@ -1,0 +1,13 @@
+[package]
+name = "id_common"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+jsonrpc-core = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18" }
+jsonrpc-derive = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18" }
+uuid = { version = "0.8.2", features = ["serde", "v4"] }
+jsonrpc-core-client = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18" }
+serde = { version = "1.0.136", features = ["derive"] }

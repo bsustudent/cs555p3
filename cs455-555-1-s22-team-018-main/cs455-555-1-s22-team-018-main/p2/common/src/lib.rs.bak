@@ -1,0 +1,19 @@
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct UserInfo {
+	pub loginname: loginname::String,
+    pub uuid: uuid::Uuid,
+    pub real_name: Option<String>,
+}
+
+#[jsonrpc_derive::rpc]
+pub trait Rpc {
+    #[rpc(name = "lookup")]
+    fn lookup(&self, loginname: String) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+	fn create (&self, loginname: String, realname: String, password; String) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+	fn reverse-lookup (&self, uuid: u64) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+	fn modify (&self, oldloginname: String, newloginname: String, password: String) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+	fn delete (&self, loginname: String, password; String) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+	fn get (&self, argument: String) -> Result<Option<UserInfo>, jsonrpc_core::Error>;
+}

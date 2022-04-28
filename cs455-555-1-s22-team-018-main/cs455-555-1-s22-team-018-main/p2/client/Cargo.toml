@@ -1,0 +1,16 @@
+[package]
+name = "id_client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+id_common = { path = "../common" }
+jsonrpc-core-client = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18", features = ["http", "tls"] }
+tokio = { version = "1.17.0", features = ["macros", "rt-multi-thread"] }
+clap = { version = "3.1.6", features = ["derive"] }
+uuid = "0.8.2"
+hyper = "0.14.18"
+hyper-tls = "0.5.0"
+tokio-native-tls = "0.3.0"

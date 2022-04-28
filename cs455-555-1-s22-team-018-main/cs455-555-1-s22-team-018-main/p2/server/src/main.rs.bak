@@ -1,0 +1,71 @@
+pub struct Service {}
+
+impl id_common::Rpc for Service {
+    fn lookup(
+        &self,
+        loginname: String,
+    ) -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+        if loginname == "jake" {
+            Ok(Some(id_common::UserInfo {
+				loginname: "jake",
+                uuid: 555,
+                real_name: Some("Jacob Talley".to_owned()),
+            }))
+        } else {
+            Ok(None)
+        }
+    }
+	fn reverse-lookup(
+        &self,
+        uuid: u64,
+    ) -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+        if uuid == "555" {
+            Ok(Some(id_common::UserInfo {
+				loginname: "jake"
+                uuid: 555,
+                real_name: Some("Jacob Talley".to_owned()),
+            }))
+        } else {
+            Ok(None)
+        }
+    }
+	
+	fn create (
+		&self,
+		loginname: String, realname: Option<String>, password; String,
+	)  -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+    }
+	fn modify (
+		&self,
+		oldloginname: String,
+		newloginname: String,
+		password: String,
+	) -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+    }
+	fn delete (
+		&self,
+		loginname: String,
+		password; String,
+		) -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+    }
+	fn get (
+		&self,
+		argument: String,
+	) -> Result<Option<id_common::UserInfo>, jsonrpc_core::Error> {
+    }
+}
+
+fn main() {
+    let port = 5181;
+
+    let mut io = jsonrpc_core::IoHandler::new();
+    io.extend_with(id_common::Rpc::to_delegate(Service {}));
+
+    let server = jsonrpc_http_server::ServerBuilder::new(io)
+        .start_http(
+            &std::net::SocketAddrV6::new(std::net::Ipv6Addr::UNSPECIFIED, port, 0, 0).into(),
+        )
+        .expect("Failed to start server");
+
+    server.wait();
+}

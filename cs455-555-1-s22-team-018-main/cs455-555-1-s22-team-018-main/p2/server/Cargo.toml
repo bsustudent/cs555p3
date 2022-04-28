@@ -1,0 +1,23 @@
+[package]
+name = "id_server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+id_common = { path = "../common" }
+jsonrpc-core = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18" }
+jsonrpc-http-server = { git = "https://github.com/vpzomtrrfrt/jsonrpc", branch = "dirty-tls-18" }
+uuid = "0.8.2"
+serde_json = "1.0.79"
+serde = "1.0.136"
+atomicwrites = "0.3.1"
+clap = { version = "3.1.6", features = ["derive"] }
+rustls-pemfile = "0.3.0"
+rustls = "0.20.4"
+bcrypt = "0.12.1"
+ctrlc = "3.2.1"
+
+[dev-dependencies]
+tempfile = "3.3.0"
